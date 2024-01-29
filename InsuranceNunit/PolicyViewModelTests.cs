@@ -8,6 +8,7 @@ using UI.Models;
 
 namespace InsuranceNunit
 {
+      [TestFixture]
     public class PolicyViewModelTests
     {
         [Test]
