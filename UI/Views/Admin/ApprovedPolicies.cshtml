@@ -1,0 +1,68 @@
+﻿@model List<DAL.AppliedPolicy>
+@{
+    ViewBag.Title = "ApprovedPolicies";
+}
+
+<style>
+    h2{
+        color: #007bff;
+    }
+
+    table{
+        width:100%;
+        border-collapse: collapse;
+        margin-top:20px;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    th,td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th{
+        background-color: #007bff; /*blue background*/
+        color: #fff; /*white*/
+    }
+
+    tbody tr:hover{
+        background-color: #f5f5f5;
+    }
+
+    .status-approved{
+        background-color: #28a745;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 4px;
+    }
+</style>
+
+<h2>Approved Policies</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Policy Id</th>
+            <th>Policy Number</th>
+            <th>Applied Date</th>
+            <th>Category</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var policy in Model)
+            {
+                <tr>
+                    <td>@policy.AppliedPolicyId</td>
+                    <td>@policy.PolicyNumber</td>
+                    <td>@policy.AppliedDate.ToShortDateString()</td>
+                    <td>@policy.Category</td>
+                    <td>
+                        <span class="status-approved">Approved</span>
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>
+

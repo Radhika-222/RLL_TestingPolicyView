@@ -1,0 +1,66 @@
+﻿@model List<UI.Models.PolicyViewModel>
+
+@{
+    ViewBag.Title = "All Policies";
+}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #3498db; /* Blue color for heading */
+        color: #fff; /* White text for heading */
+    }
+
+    td {
+        background-color: #fff;
+    }
+
+    .delete-link {
+        color: #e74c3c; /* Red color for delete link */
+        text-decoration: none;
+        font-weight: bold;
+        background-color: #fff; /* White background for button */
+        border: 1px solid #e74c3c; /* Red border for button */
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+        .delete-link:hover {
+            color: #c0392b; /* Darker red color on hover */
+            background-color: #f2dede; /* Light red background on hover */
+        }
+</style>
+
+<h2 style="background-color: #3498db; color: #fff; padding: 10px;">All Policies</h2>
+
+<table class="table">
+    <tr class="heading-row">
+        <th style="background-color: #3498db;">Policy Number</th>
+        <th style="background-color: #3498db;">Applied Date</th>
+        <th style="background-color: #3498db;">Category</th>
+        <th style="background-color: #3498db;">Action</th>
+    </tr>
+
+    @foreach (var policy in Model)
+    {
+        <tr>
+            <td>@policy.PolicyNumber</td>
+            <td>@policy.AppliedDate.ToString("yyyy-MM-dd")</td>
+            <td>@policy.Category</td>
+            <td>
+                @Html.ActionLink("Delete", "DeletePolicy", "Policy", new { policyNumber = policy.PolicyNumber }, new { @class = "delete-link" })
+            </td>
+        </tr>
+    }
+</table>

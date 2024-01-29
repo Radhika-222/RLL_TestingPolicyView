@@ -1,0 +1,73 @@
+﻿@model List<UI.Models.PolicyViewModel>
+
+@{
+    ViewBag.Title = "All Policies";
+}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #3498db; /* Blue color for heading */
+        color: #fff; /* White text for heading */
+    }
+
+    td {
+        background-color: #fff;
+    }
+
+    .edit-link {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+        background-color: #fff; /* White background for button */
+        border: 1px solid #3498db; /* Blue border for button */
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+        .edit-link:hover {
+            color: #1e87d3;
+            background-color: #e6f7ff; /* Light blue background on hover */
+        }
+
+    .heading-row {
+        background-color: #3498db; /* Blue color for the heading row */
+        color: #fff; /* White text for the heading row */
+    }
+</style>
+
+<h2 style="background-color: #3498db; color: #fff; padding: 10px;">All Policies</h2>
+
+<table class="table">
+    <tr class="heading-row">
+        <th>Policy Number</th>
+        <th>Applied Date</th>
+        <th>Category</th>
+        <!-- Add other columns for additional properties -->
+        <th>Action</th>
+    </tr>
+
+    @foreach (var policy in Model)
+    {
+        <tr>
+            <td>@policy.PolicyNumber</td>
+            <td>@policy.AppliedDate.ToString("yyyy-MM-dd")</td>
+            <td>@policy.Category</td>
+            <!-- Add other columns for additional properties -->
+            <td>
+                @Html.ActionLink("Edit", "EditPolicy", "Policy", new { policyNumber = policy.PolicyNumber }, new { @class = "edit-link" })
+            </td>
+        </tr>
+    }
+</table>
